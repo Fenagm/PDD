@@ -1,0 +1,13 @@
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.exe
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.deps.json
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.runtimeconfig.json
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.runtimeconfig.dev.json
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.dll
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\bin\Debug\netcoreapp3.1\clase1_ejercicio.pdb
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.AssemblyInfoInputs.cache
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.AssemblyInfo.cs
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.csproj.CoreCompileInputs.cache
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.dll
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.pdb
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.genruntimeconfig.cache
+C:\Users\Fena\source\repos\clase1_ejercicio\clase1_ejercicio\obj\Debug\netcoreapp3.1\clase1_ejercicio.csprojAssemblyReference.cache
