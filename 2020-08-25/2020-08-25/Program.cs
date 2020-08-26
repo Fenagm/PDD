@@ -6,7 +6,20 @@ namespace _2020_08_25
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            int winner = 7;
+            int apuesta = 0;
+
+            while (winner!=apuesta)
+            {
+                Console.WriteLine("adivine el numero entre 1 y 10");
+                apuesta = int.Parse(Console.ReadLine());
+                
+             
+            }
+
+            Console.WriteLine("Ganaste!");
+
         }
     }
 }
