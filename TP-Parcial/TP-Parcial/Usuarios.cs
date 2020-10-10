@@ -9,5 +9,13 @@ namespace TP_Parcial
         public int id { get; set; }
         public string Usuario { get; set; }
         public string Clave { get; set; }
+
+        public override string ToString()
+        {
+            return "id:"+id+" "+"Usuario: "+Usuario;
+        }
     }
+    
+
+
 }

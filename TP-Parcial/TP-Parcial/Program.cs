@@ -10,26 +10,30 @@ namespace TP_Parcial
     {
         static void Main(string[] args)
         {
-            List<Tareas> tareas = new List<Tareas>();
-            tareas.Add(new Tareas("Ejercicio1", new DateTime(2020, 5, 23), 10, new Recursos(), "Realizada", 1));
-            tareas.Add(new Tareas("Ejercicio2", new DateTime(2020, 9, 12), 12, new Recursos(), "Realizada",2));
-            tareas.Add(new Tareas("Ejercicio3", new DateTime(2020, 7, 29), 12, new Recursos(), "Realizada",3));
-            tareas.Add(new Tareas("Ejercicio4", new DateTime(2020, 4, 06), 11, new Recursos(), "Pendiente",4));
+            //List<Tareas> tareas = new List<Tareas>();
+            //tareas.Add(new Tareas("Ejercicio1", new DateTime(2020, 5, 23), 10, new Recursos(), "Realizada", 1));
+            //tareas.Add(new Tareas("Ejercicio2", new DateTime(2020, 9, 12), 12, new Recursos(), "Realizada",2));
+            //tareas.Add(new Tareas("Ejercicio3", new DateTime(2020, 7, 29), 12, new Recursos(), "Realizada",3));
+            //tareas.Add(new Tareas("Ejercicio4", new DateTime(2020, 4, 06), 11, new Recursos(), "Pendiente",4));
 
-            foreach (Tareas i in tareas)
+            //foreach (Tareas i in tareas)
             {
-                Console.WriteLine("{0}\t", i.ToString());
+              //  Console.WriteLine("{0}\t", i.ToString());
             }
 
             //CreateUser( "marta", "clave1234");
             //UpdateUserName(2, "Fer");
             //UpdateUserName("Juan", "pedro");
             //DeleteUser(2);
+            //Console.WriteLine(SelectUser(11));
+
+            //Console.ReadLine();
             //CreateRecurso("recurso uno", 1);
             //CreateRecurso("recurso dos", 1);
             //UpdateRecurso(1, "recurso UNO");
             //DeleteRecurso(1);
-            //CreateTask("Tarea 1", DateTime.Now, 2,1, "pending");
+            CreateTask("Tarea 1", DateTime.Now, 2,1, "pending");
+           Console.WriteLine(SelectTask(2));
 
             //CreateTask("Tarea 2", DateTime.Now, 2, 1, "pending");
             //UpdateTaskStatus(1,"finalizado");
@@ -89,7 +93,18 @@ namespace TP_Parcial
             ctx.SaveChanges();
         }
 
+        static string SelectUser(int id) {
 
+            var ctx = new TareasDbcontext();
+            var user = ctx.Usuario.Where(i => i.id == id).FirstOrDefault();
+            if (user != null)
+            {
+                return user.ToString();
+            }
+            else { return "no existe"; }
+        }
+
+       
         // CRUD TAREAS
         static void CreateTask(string titulo, DateTime vencimiento, int estimacion,int recursosid,  string estado) {
 
@@ -171,6 +186,17 @@ namespace TP_Parcial
             ctx.SaveChanges();
         }
 
+        static string SelectTask(int id)
+        {
+
+            var ctx = new TareasDbcontext();
+            var tarea = ctx.Tareas.Where(i => i.id == id).FirstOrDefault();
+            if (tarea != null)
+            {
+                return tarea.ToString();
+            }
+            else { return "no existe"; }
+        }
 
 
         // CRUD RECURSOS
@@ -221,6 +247,18 @@ namespace TP_Parcial
             ctx.Recursos.Remove(recurso);
             ctx.SaveChanges();
         }
+        static string SelectRecurso(int id)
+        {
+
+            var ctx = new TareasDbcontext();
+            var rec = ctx.Tareas.Where(i => i.id == id).FirstOrDefault();
+            if (rec != null)
+            {
+                return rec.ToString();
+            }
+            else { return "no existe"; }
+        }
+
 
         // CRUD DETALLES
 

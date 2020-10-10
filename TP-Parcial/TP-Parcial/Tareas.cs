@@ -26,6 +26,11 @@ namespace TP_Parcial
         }
 
         public Tareas() { }
+
+        public override string ToString()
+        {
+            return "id:" + id + " " + "Tarea: " + titulo+ " "+"Vencimiento:"+vencimiento;
+        }
     }
 }
 
