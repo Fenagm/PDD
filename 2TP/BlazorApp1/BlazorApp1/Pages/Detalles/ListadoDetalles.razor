@@ -4,56 +4,64 @@
 @inject NavigationManager navigation
 @inject IJSRuntime JsRuntime
 
-
 <h3>Listado Detalles</h3>
 
-<p>Visualizador de los Detalles</p>
+<button class="btn btn-primary mb-2 pt-2" @onclick="()=>Editar(0)"><span class="oi oi-plus mr-1"></span>Nuevo</button>
 
+<p>Visualizador Detalles</p>
 
+@if (detalles == null)
+{
+<p><em>Cargando...</em></p> }
+            else
+            {
 <table class="table">
     <thead>
         <tr>
             <th>Id</th>
             <th>Fecha</th>
             <th>Tiempo</th>
-            <th>RecursoId</th>
+            <th>Recurso</th>
             <th>Tarea</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var detail in detalles)
         {
-            <tr>
-                <td>@detail.Id</td>
-                <td>@detail.Fecha</td>
-                <td>@detail.Tiempo</td>
-                <td>@detail.Recurso.Id</td>
-                <td>@detail.Tarea.Titulo</td>
-            </tr>
-        }
+<tr>
+    <td>@detail.Id</td>
+    <td>@detail.Fecha</td>
+    <td>@detail.Tiempo</td>
+    <td>@detail.Recurso.Nombre</td>
+    <td>@detail.Tarea.Titulo</td>
+    <td>
+        <button class="btn btn-info" @onclick="()=>Editar(detail.Id)">Editar</button>
+        <button class="btn btn-danger" @onclick="()=>Borrar(detail.Id)">Borrar</button>
+    </td>
+</tr>}
     </tbody>
-</table>
+</table>}
 
-@code {
-    private List<BlazorApp1.Data.Detalles> detalles;
+@code { private List<BlazorApp1.Data.Detalles> detalles;
 
-    protected override async Task OnInitializedAsync()
-    {
-        detalles = await DetallesService.ListDetail();
-    }
+            protected override async Task OnInitializedAsync()
+            {
+                detalles = await DetallesService.ListDetail();
+            }
 
-    protected void Editar(int id)
-    {
-        navigation.NavigateTo("Detalles/Editar/" + id);
-    }
+            protected void Editar(int id)
+            {
+                navigation.NavigateTo("Detalles/Editar/" + id);
+            }
 
-    async Task Borrar(int id)
-    {
-        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar la Detalle?");
-        if (confirmed)
-        {
-            await DetallesService.DeleteDetail(id);
-            detalles = await DetallesService.ListDetail();
-        }
-    }
-}
+            async Task Borrar(int id)
+            {
+                bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar la Detalle?");
+                if (confirmed)
+                {
+                    await DetallesService.DeleteDetail(id);
+                    detalles = await DetallesService.ListDetail();
+                }
+            } }
+

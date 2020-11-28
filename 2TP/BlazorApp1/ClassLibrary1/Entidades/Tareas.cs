@@ -11,7 +11,7 @@ namespace ClassLibrary1.Entidades
         public DateTime Vencimiento { get; set; }
         public int Estimacion { get; set; }
 
-        public int RecursosId { get; set; }
+        public int RecursoId { get; set; }
         public Recursos Responsable { get; set; }
         public string Estado { get; set; }
         public int Id { get; set; }

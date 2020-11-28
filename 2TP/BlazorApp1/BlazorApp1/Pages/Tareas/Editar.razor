@@ -24,12 +24,11 @@
             </div>
             <div class="mb-3">
                 Recurso:
-                <InputSelect class="p-1" @bind-Value="RecursosId">
+                <InputSelect class="p-1" @bind-Value="RecursoId">
                     <option value="0">Elija un Recurso</option>
                     @foreach (var item in Recursos)
                     {
-                        <option value="@item.Id">@item.Nombre</option>
-                    }
+<option value="@item.Id">@item.Nombre</option>                    }
                 </InputSelect>
             </div>
             <div class="mb-3">
@@ -43,36 +42,34 @@
 
 </EditForm>
 
-@code {
-    [Parameter]
-    public int Id { get; set; }
+@code { [Parameter]
+            public int Id { get; set; }
 
-    public Tareas Modelo { get; set; } = new Tareas();
+            public Tareas Modelo { get; set; } = new Tareas();
 
-    public string RecursosId { get; set; }
+            public string RecursoId { get; set; }
 
-    private List<Recursos> Recursos = new List<Recursos>();
+            private List<Recursos> Recursos = new List<Recursos>();
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (Id > 0)
-        {
-            Modelo = await TareasService.SelectTask(Id);
-            RecursosId = Modelo.RecursosId.ToString();
-        }
-        else
-        {
-            Modelo = new Tareas();
-        }
-        Recursos = await RecursosService.ListResource();
-        
-    }
+            protected override async Task OnInitializedAsync()
+            {
+                if (Id > 0)
+                {
+                    Modelo = await TareasService.SelectTask(Id);
+                    RecursoId = Modelo.RecursosId.ToString();
+                }
+                else
+                {
+                    Modelo = new Tareas();
+                }
+                Recursos = await RecursosService.ListResource();
+
+            }
 
 
-    private async void Guardar()
-    {
-        Modelo.RecursosId = int.Parse(RecursosId);
-        await TareasService.SaveTask(Modelo);
-        navigation.NavigateTo("Tareas/ListadoTareas");
-    }
-}
+            private async void Guardar()
+            {
+                Modelo.RecursosId = int.Parse(RecursoId);
+                await TareasService.SaveTask(Modelo);
+                navigation.NavigateTo("Tareas/ListadoTareas");
+            } }

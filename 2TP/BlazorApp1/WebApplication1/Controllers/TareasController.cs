@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Tareas>>> Get()
         {
-            return await _context.Tareas.Include(i => i.Responsable).AsNoTracking().ToListAsync();
+            return await _context.Tareas.Include(i => i.RecursoId).AsNoTracking().ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -33,7 +33,7 @@ namespace WebApplication1.Controllers
             return await _context.Tareas.Where(i => i.Id == id).AsNoTracking().SingleAsync();
         }
 
-     
+      
 
         [HttpPost]
         public async Task<ActionResult<Tareas>> Post(Tareas valor)

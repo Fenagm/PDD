@@ -45,6 +45,8 @@ namespace WebApplication1.Data
                 tar.Property(p => p.Vencimiento).HasColumnName("Vencimiento").IsRequired();
                 tar.Property(p => p.Estimacion).HasColumnName("Estimacion").HasColumnType("int(2)").IsRequired();
                 tar.Property(p => p.Estado).HasColumnName("Estado").HasColumnType("varchar(10)");
+              
+
             });
 
             modelBuilder.Entity<Detalles>(det =>

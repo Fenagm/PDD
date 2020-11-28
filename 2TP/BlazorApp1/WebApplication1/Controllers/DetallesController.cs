@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Detalles>>> Get()
         {
-            return await _context.Detalles.Include(i => i.Recurso).Include(i => i.Tarea).AsNoTracking().ToListAsync();
+            return await _context.Detalles.Include(i => i.Recurso).Include(i => i.Tarea).ToListAsync();
         }
 
         [HttpGet("{id}")]
@@ -43,8 +43,7 @@ namespace WebApplication1.Controllers
             else
             {
                 _context.Entry(valor).State = EntityState.Modified;
-                //_context.Detalles.Attach(valor);
-                //_context.Detalles.Update(valor);
+              
             }
             await _context.SaveChangesAsync();
             return valor;
