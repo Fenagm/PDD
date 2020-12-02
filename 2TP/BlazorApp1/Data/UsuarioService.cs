@@ -9,6 +9,7 @@ namespace BlazorApp1.Data
 {
     public class UsuarioService
     {
+       
         public async Task<List<Usuario>> ListUser()
         {
             var remoteService = RestService.For<IRemoteService>("https://localhost:44373/api/");
@@ -27,7 +28,7 @@ namespace BlazorApp1.Data
             return await remoteService.GuardarUsuario(value);
         }
 
-            public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(int id)
         {
             var remoteService = RestService.For<IRemoteService>("https://localhost:44373/api/");
             await remoteService.BorrarUsuario(id);

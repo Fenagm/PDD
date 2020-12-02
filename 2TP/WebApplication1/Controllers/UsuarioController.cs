@@ -10,92 +10,61 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsuarioController : ControllerBase
-    {
-        private readonly TareasDbContext _context;
-
-        public UsuarioController(TareasDbContext context)
+ 
+        [Route("api/[controller]")]
+        [ApiController]
+        public class UsuarioController : ControllerBase
         {
-            _context = context;
-        }
+            private readonly TareasDbContext _context;
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Usuario>>> Get()
-        {
-            return await _context.Usuarios.AsNoTracking().ToListAsync();
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Usuario>> GetUser(int id)
-        {
-            return await _context.Usuarios.Where(i => i.UsuarioPK == id).AsNoTracking().SingleAsync();
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<Usuario>> Post(Usuario valor)
-        {
-            //_context.Entry(valor).State = valor.UsuarioPK == 0 ? EntityState.Added : EntityState.Modified;
-
-            if (valor.UsuarioPK == 0)
+            public UsuarioController(TareasDbContext context)
             {
-                _context.Usuarios.Add(valor);
+                _context = context;
             }
-            else
+
+            [HttpGet]
+            public async Task<ActionResult<IEnumerable<Usuario>>> Get()
             {
-                _context.Entry(valor).State = EntityState.Unchanged;
-                _context.Entry(valor).State = EntityState.Modified;
-                //_context.Usuarios.Attach(valor);
-                //_context.Usuarios.Update(valor);
+                return await _context.Usuarios.AsNoTracking().ToListAsync();
             }
+
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Usuario>> GetUser(int id)
+            {
+                return await _context.Usuarios.Where(i => i.UsuarioPK == id).AsNoTracking().SingleAsync();
+            }
+
+            [HttpPost]
+            public async Task<ActionResult<Usuario>> Post(Usuario valor)
+            {
+                var local = _context.Usuarios.Local.FirstOrDefault(i => i.UsuarioPK.Equals(valor.UsuarioPK));
+
+                if (local != null)
+                {
+                    _context.Entry(local).State = EntityState.Detached;
+                }
+
+                if (valor.UsuarioPK == 0)
+                {
+                    _context.Usuarios.Add(valor);
+                }
+                else
+                {
+                    _context.Entry(valor).State = EntityState.Modified;
+                }
                 await _context.SaveChangesAsync();
-            return Ok();
+                return Ok();
+            }
+
+            [HttpDelete("{id}")]
+            public async Task<IActionResult> Delete(int id)
+            {
+                var user = _context.Usuarios.Where(i => i.UsuarioPK == id).Single();
+
+                _context.Usuarios.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var user = _context.Usuarios.Where(i => i.UsuarioPK == id).Single();
-
-            _context.Usuarios.Remove(user);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> Put(int id, Usuario user)
-        //{
-        //    if (id != user.UsuarioPK)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    _context.Entry(user).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!UserExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
-
-        //private bool UserExists(int id)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
-}

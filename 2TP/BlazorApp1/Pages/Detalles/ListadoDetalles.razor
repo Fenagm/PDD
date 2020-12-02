@@ -6,45 +6,42 @@
 
 <h3>Listado Detalles</h3>
 
-<button class="btn btn-primary mb-2 pt-2" @onclick="()=>Editar(0)"><span class="oi oi-plus mr-1"></span>Nuevo</button>
+<button class="btn btn-primary mb-2 pt-2" @onclick="()=>Editar(0)"><span class="oi oi-plus mr-1"></span>Nuevo Detalle</button>
 
 <p>Visualizador Detalles</p>
 
 @if (detalles == null)
 {
-    <p><em>Cargando... Por favor espere...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Fecha</th>
-                <th>Tiempo</th>
-                <th>Recurso</th>
-                <th>Tarea</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var detail in detalles)
+<p><em>Cargando... Por favor espere...</em></p> }
+            else
             {
-            <tr>
-                <td>@detail.Id</td>
-                <td>@detail.Fecha</td>
-                <td>@detail.Tiempo</td>
-                <td>@detail.Recurso.Nombre</td>
-                <td>@detail.Tarea.Titulo</td>
-                <td>
-                    <button class="btn btn-info" @onclick="()=>Editar(detail.Id)">Editar</button>
-                    <button class="btn btn-danger" @onclick="()=>Borrar(detail.Id)">Borrar</button>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Fecha</th>
+            <th>Tiempo</th>
+            <th>Recurso</th>
+            <th>Tarea</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in detalles)
+        {
+<tr>
+    <td>@detail.Id</td>
+    <td>@detail.Fecha</td>
+    <td>@detail.Tiempo</td>
+    <td>@detail.Recurso.Nombre</td>
+    <td>@detail.Tarea.Titulo</td>
+    <td>
+        <button class="btn btn-info" @onclick="()=>Editar(detail.Id)">Editar</button>
+        <button class="btn btn-danger" @onclick="()=>Borrar(detail.Id)">Borrar</button>
+    </td>
+</tr>}
+    </tbody>
+</table>}
 
 @code {
     private List<BlazorApp1.Data.Detalle> detalles;
@@ -61,7 +58,7 @@ else
 
     async Task Borrar(int id)
     {
-        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar la Detalle?");
+        bool confirmed = await JsRuntime.InvokeAsync<bool>("confirm", "Desea elimiar el Detalle?");
         if (confirmed)
         {
             await DetalleService.DeleteDetail(id);
@@ -69,4 +66,3 @@ else
         }
     }
 }
-

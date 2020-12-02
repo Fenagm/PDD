@@ -21,14 +21,12 @@ namespace BlazorApp1.Data
         [Delete("/Tarea/{id}")]
         Task<Tarea> BorrarTarea(int id);
 
-        
         [Get("/Usuario")]
         Task<List<Usuario>> GetAllUsuario();
 
         [Get("/Usuario/{id}")]
         Task<Usuario> GetUsuario(int id);
 
-        
         [Post("/Usuario")]
         Task<Usuario> GuardarUsuario(Usuario valor);
 
